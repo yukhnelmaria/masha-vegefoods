@@ -2,15 +2,13 @@ import React from "react";
 
 export const ProductItem = ({config}) => {
   const { 
-    id, 
     name, 
-    category, 
     imageUrl, 
     priceOld, 
     priceSale, 
     price
   } = config;
-
+  
   const statusElement = () => {
     let status = undefined;
     if (priceOld && priceSale) {
@@ -38,8 +36,8 @@ export const ProductItem = ({config}) => {
         <div className="pricing">
           <p className="price">
             { price && <span>{`${price}$`}</span> }
-            { priceOld && <span class="mr-2 price-dc">{`${priceOld}$`}</span> }
-            { priceSale && <span class="price-sale">{`${priceSale}$`}</span> }
+            { priceOld && <span className="mr-2 price-dc">{`${priceOld}$`}</span> }
+            { priceSale && <span className="price-sale">{`${priceSale}$`}</span> }
           </p>
         </div>
       </div>

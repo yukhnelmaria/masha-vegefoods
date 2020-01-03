@@ -3,11 +3,11 @@ import {ProductItem} from "./ProductItem";
 
 export const ProductList = ({products}) => {
   return (
-    <div class="row">
+    <div className="row">
       {
         products.map((item) => (
-          <div className="col-md-6 col-lg-3">
-            <ProductItem config={item} key={item.id} />
+          <div className="col-md-6 col-lg-3" key={item.id}>
+            <ProductItem config={item} />
           </div>
         )
       )}

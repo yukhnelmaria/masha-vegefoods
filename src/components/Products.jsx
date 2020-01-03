@@ -4,11 +4,18 @@ import {Paginator} from "./Paginator";
 import {ProductList} from "./ProductList";
 import _ from "underscore";
 
-const categories = (array) => {
+const findCategories = (array) => {
   const productCategories = _.unique(array.map((item) => item.category.name));
   return ["All", ...productCategories];
 };
 
+const filterCategoryArray = (categoryName, array) => {
+  if (categoryName !== "All") {
+    return array.filter(item => item.category.name === categoryName);
+  }
+
+  return array;
+}
 
 export class Products extends React.Component {
   constructor(props) {
@@ -16,11 +23,22 @@ export class Products extends React.Component {
 
     this.state = {
       products: this.props.products || [],
+      categories: findCategories(this.props.products),
       currentCategoryName: "All",
-      currentPageIndex: 1
+      currentPageIndex: 1 // for paginator
     };
+
+    this.state.filteredProducts = filterCategoryArray(this.state.currentCategoryName, this.props.products);
+
+    this.showFilteredProducts = this.showFilteredProducts.bind(this);
   }
-  
+
+  showFilteredProducts(event) {
+    this.setState({
+      currentCategoryName: event.target.text,
+      products: filterCategoryArray(event.target.text, this.state.products)
+    });
+  }
   
   render() {
     return (
@@ -28,10 +46,11 @@ export class Products extends React.Component {
         <div className="container">
           <ProductCategoryMenu 
             activeItem={this.state.currentCategoryName}
-            categories={categories(this.state.products)}
+            categories={this.state.categories}
+            onItemSelect={this.showFilteredProducts}
           />
           <ProductList
-            products={this.state.products}
+            products={filterCategoryArray(this.state.currentCategoryName, this.props.products)}
           />
           <Paginator
             currentIndex={this.state.currentPageIndex}
