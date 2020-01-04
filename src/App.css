@@ -1,0 +1,8 @@
+.subscribe-form .form-group .error {
+    border: solid 1px #dc3545;
+    border-radius: 0;
+}
+
+.subscribe-form p {
+    font: normal 13px Arial;
+}

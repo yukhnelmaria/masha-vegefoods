@@ -4,7 +4,7 @@ import {Products} from "./components/Products";
 import {TopInfoPanel} from "./components/TopInfoPanel";
 import {MainMenu} from "./components/MainMenu";
 import {PageHeader} from "./components/PageHeader";
-import {SubscribeForm} from "./components/SubscribeForm";
+import {SubscribeBlock} from "./components/SubscribeBlock";
 import {Footer} from "./components/Footer";
 
 
@@ -162,7 +162,7 @@ function App() {
       <MainMenu />
       <PageHeader />
       <Products products={products} />
-      <SubscribeForm />
+      <SubscribeBlock />
       <Footer />
     </>
   );
